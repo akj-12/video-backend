@@ -1,10 +1,7 @@
-import dotenv from "dotenv";
-import connectDB from "./db/index.js";
-dotenv.config();
+import mongoose from "mongoose";
+import { DB_NAME } from "../constants.js";
 
-connectDB();
-/*
-(async () => {
+const connectDB = async () => {
   try {
     const mongoDBURI =
       process.env.MONGODB_URI.replace("<password>", process.env.DB_PASSWORD) +
@@ -15,8 +12,9 @@ connectDB();
       `Database connected successfully at host: ${responseMongoDbConnection?.connection?.host}`
     );
   } catch (error) {
-    console.error("ERROR : ", error);
-    throw error;
+    console.error("DATABASE ERROR : ", error);
+    process.exit(1);
   }
-})();
-*/
+};
+
+export default connectDB;
